@@ -1,0 +1,204 @@
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  background: var(--black);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* no background here: the html element paints black so the fixed canvas shows through */
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: #b5e6f7;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Gold focus rings everywhere */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-solid);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.25);
+  border-radius: 6px;
+}
+
+::selection {
+  background: rgba(71, 178, 217, 0.4);
+  color: #fff;
+}
+
+main:focus {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -100px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--drop);
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--maxw) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(64px, 11vw, 128px);
+}
+
+/* Italic accent word inside serif headings */
+em {
+  font-style: italic;
+}
+
+.gold-text {
+  background: var(--gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  /* keep descenders from clipping */
+  padding-right: 0.06em;
+  padding-bottom: 0.08em;
+}
+
+.gold-rule {
+  display: block;
+  height: 1px;
+  width: 120px;
+  margin-inline: auto;
+  background: var(--gold);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+.gold-rule--wide {
+  width: 100%;
+  max-width: none;
+  opacity: 0.8;
+}
+
+/* ── Scroll reveal (only hides content when JS is running) ───────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s var(--ease-out) var(--reveal-delay, 0ms),
+      transform 0.7s var(--ease-out) var(--reveal-delay, 0ms);
+  }
+
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Animated background ─────────────────────────────────────────────────── */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--black);
+  pointer-events: none;
+}
+
+.bg__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.bg__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.62) 70%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 50%, rgba(0, 0, 0, 0.78) 100%);
+}

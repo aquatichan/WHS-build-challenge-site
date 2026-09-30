@@ -1,0 +1,74 @@
+/*
+ * Design tokens. Change colors here and the whole site follows.
+ */
+:root {
+  color-scheme: dark;
+
+  /* ── Brand palette ─────────────────────────────── */
+  --royal: #111e80; /* primary deep blue */
+  --sky: #47b2d9; /* bright accent, glows, links */
+  --navy: #1e3d62; /* secondary surfaces */
+  --black: #000000; /* base background */
+
+  /* Metallic gold, built as a gradient. Use sparingly. */
+  --gold-1: #8a6d1f;
+  --gold-2: #d4af37;
+  --gold-3: #f5e08a;
+  --gold-4: #b8912e;
+  --gold: linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 32%, var(--gold-3) 52%, var(--gold-4) 100%);
+  --gold-v: linear-gradient(180deg, var(--gold-3) 0%, var(--gold-2) 40%, var(--gold-4) 70%, var(--gold-1) 100%);
+  --gold-solid: #d4af37;
+
+  /* ── Text (all AA on the dark surfaces below) ──── */
+  --text: #eef2fa;
+  --text-muted: #c1cde0;
+  --text-soft: #9fb0c9;
+  --link: #7fd0ee;
+
+  /* ── Surfaces ─────────────────────────────────── */
+  --surface-0: #03050c;
+  --surface-1: #070b1a;
+  --surface-2: #0b1430;
+  --steel-hi: #2b3a55;
+  --steel-lo: #121b2e;
+
+  /* ── Type ─────────────────────────────────────── */
+  --font-display: 'Fraunces', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* ── Shape & depth ────────────────────────────── */
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 26px;
+  --bevel:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --drop:
+    0 0 0 1px rgba(0, 0, 0, 0.65),
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 12px 28px rgba(0, 0, 0, 0.55),
+    0 32px 64px -24px rgba(0, 0, 0, 0.7);
+
+  /* Film grain for physical surfaces */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --noise-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --brushed: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.022) 0 1px,
+    rgba(0, 0, 0, 0.02) 1px 2px,
+    transparent 2px 4px
+  );
+
+  --nav-h: 68px;
+  --gutter: 16px;
+  --maxw: 1180px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gutter: 28px;
+    --nav-h: 76px;
+  }
+}

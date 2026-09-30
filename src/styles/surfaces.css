@@ -1,0 +1,449 @@
+/*
+ * Physical surfaces: glass cards, metal plates, stamped badges, pressable
+ * buttons, screws. Everything else is built from these.
+ */
+
+/* ── Beveled glass card ──────────────────────────────────────────────────── */
+.glass {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(120, 190, 240, 0.09) 0%, rgba(255, 255, 255, 0.015) 38%, rgba(0, 0, 0, 0) 60%),
+    linear-gradient(160deg, rgba(17, 30, 128, 0.55) 0%, rgba(10, 18, 48, 0.82) 48%, rgba(3, 6, 16, 0.92) 100%);
+  box-shadow: var(--bevel), var(--drop);
+}
+
+/* thin top highlight edge */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0 12% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(190, 230, 255, 0.55), transparent);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* film grain */
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: var(--noise);
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+/* Spotlight that follows the pointer (see bits/SpotlightCard.jsx) */
+.spotlight {
+  --spot-x: 50%;
+  --spot-y: -40%;
+  overflow: hidden;
+}
+
+.spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
+.spotlight::after {
+  background-image:
+    radial-gradient(420px circle at var(--spot-x) var(--spot-y), rgba(71, 178, 217, 0.14), transparent 60%),
+    var(--noise-soft);
+  opacity: 1;
+  background-size: auto, 180px 180px;
+}
+
+@media (hover: hover) {
+  .spotlight {
+    transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  }
+
+  .spotlight:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      var(--bevel),
+      0 0 0 1px rgba(71, 178, 217, 0.28),
+      0 4px 8px rgba(0, 0, 0, 0.5),
+      0 22px 44px rgba(0, 0, 0, 0.6),
+      0 0 40px -8px rgba(71, 178, 217, 0.35);
+  }
+}
+
+/* ── Engraved metal nameplate (section headers) ──────────────────────────── */
+.plate {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  padding: 22px 30px 24px;
+  border-radius: 14px;
+  background:
+    var(--brushed),
+    linear-gradient(180deg, #1d2a42 0%, #111a2d 55%, #0b1120 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 0 1px #000,
+    0 1px 0 1px rgba(255, 255, 255, 0.06),
+    0 18px 36px -12px rgba(0, 0, 0, 0.75);
+}
+
+.plate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--noise);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.plate__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sky);
+  /* stamped into the plate */
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.plate__index {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.plate__rule {
+  width: 26px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.plate__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 5.2vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-variation-settings: 'opsz' 120;
+  color: #f4f6fb;
+  /* engraved: dark cut above, light catch below */
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.95), 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.plate__title em {
+  font-weight: 500;
+  color: #bfe6f5;
+}
+
+/* Screws */
+.plate__screw {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #e8edf5 0%, #9aa6b8 40%, #4a5468 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.7);
+}
+
+.plate__screw::after {
+  content: '';
+  position: absolute;
+  left: 1.5px;
+  right: 1.5px;
+  top: 50%;
+  height: 1.5px;
+  margin-top: -0.75px;
+  background: rgba(20, 26, 38, 0.8);
+  transform: rotate(35deg);
+}
+
+.plate__screw--tl { top: 9px; left: 9px; }
+.plate__screw--tr { top: 9px; right: 9px; }
+.plate__screw--bl { bottom: 9px; left: 9px; }
+.plate__screw--br { bottom: 9px; right: 9px; }
+.plate__screw--tr::after { transform: rotate(-20deg); }
+.plate__screw--bl::after { transform: rotate(80deg); }
+.plate__screw--br::after { transform: rotate(10deg); }
+
+.plate__screw--gold {
+  background: radial-gradient(circle at 35% 30%, #fff4c4 0%, var(--gold-2) 40%, var(--gold-1) 100%);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: clamp(32px, 5vw, 52px);
+}
+
+.section-head--center {
+  align-items: center;
+  text-align: center;
+}
+
+.section-head--center .plate__eyebrow {
+  justify-content: center;
+}
+
+.section-head__intro {
+  max-width: 56ch;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+}
+
+@media (max-width: 519px) {
+  .plate {
+    display: block;
+    padding: 20px 22px 22px;
+  }
+}
+
+/* ── Stamped-metal number badge ──────────────────────────────────────────── */
+.badge {
+  --size: 52px;
+  display: inline-grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  padding: 2.5px;
+  border-radius: 50%;
+  background: var(--gold); /* gold rim */
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.8),
+    0 3px 6px rgba(0, 0, 0, 0.6),
+    0 8px 16px -6px rgba(0, 0, 0, 0.7);
+  flex: none;
+}
+
+.badge__face {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 38%),
+    repeating-conic-gradient(from 0deg, rgba(255, 255, 255, 0.06) 0 4deg, rgba(0, 0, 0, 0.05) 4deg 8deg),
+    linear-gradient(160deg, #e9edf3 0%, #b4bdcb 45%, #7d8799 100%);
+  box-shadow:
+    inset 0 2px 2px rgba(255, 255, 255, 0.7),
+    inset 0 -3px 4px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: 0.02em;
+  /* debossed digits */
+  color: #1a2130;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75), 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.badge--sm {
+  --size: 40px;
+}
+
+.badge--sm .badge__face {
+  font-size: 0.95rem;
+}
+
+/* ── Pressable buttons ───────────────────────────────────────────────────── */
+.btn {
+  --lift: 4px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-height: 44px;
+  padding: 0.8em 1.35em;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateY(0);
+  transition:
+    transform 0.12s var(--ease-out),
+    box-shadow 0.12s var(--ease-out),
+    filter 0.2s;
+}
+
+.btn svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.btn--sm {
+  --lift: 3px;
+  min-height: 40px;
+  padding: 0.6em 1em;
+  font-size: 0.9375rem;
+  border-radius: 10px;
+}
+
+.btn--lg {
+  min-height: 54px;
+  padding: 0.95em 1.6em;
+  font-size: 1.0625rem;
+  border-radius: 14px;
+}
+
+/* Primary: glossy royal key with a gold rim */
+.btn--primary {
+  color: #fff;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 48%, rgba(0, 0, 0, 0) 52%) padding-box,
+    linear-gradient(180deg, #2c43d6 0%, #1a2aa8 50%, #111e80 100%) padding-box,
+    var(--gold) border-box;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    0 var(--lift) 0 #4a3a10,
+    0 calc(var(--lift) + 1px) 0 rgba(0, 0, 0, 0.8),
+    0 calc(var(--lift) + 8px) 18px rgba(0, 0, 0, 0.55),
+    0 0 24px -4px rgba(71, 178, 217, 0.45);
+}
+
+.btn--primary:hover {
+  color: #fff;
+  filter: brightness(1.08);
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    0 calc(var(--lift) - 1px) 0 #4a3a10,
+    0 var(--lift) 0 rgba(0, 0, 0, 0.8),
+    0 calc(var(--lift) + 4px) 12px rgba(0, 0, 0, 0.55),
+    0 0 30px -4px rgba(71, 178, 217, 0.55);
+}
+
+.btn--primary:active {
+  transform: translateY(calc(var(--lift) - 1px));
+  filter: brightness(0.96);
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.45),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    0 1px 0 #4a3a10,
+    0 2px 0 rgba(0, 0, 0, 0.8),
+    0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Secondary: brushed steel key */
+.btn--steel {
+  color: var(--text);
+  background:
+    var(--brushed),
+    linear-gradient(180deg, #34476a 0%, #1f2d48 50%, #162238 100%);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 var(--lift) 0 #0a101c,
+    0 calc(var(--lift) + 1px) 0 rgba(0, 0, 0, 0.8),
+    0 calc(var(--lift) + 8px) 18px rgba(0, 0, 0, 0.5);
+}
+
+.btn--steel:hover {
+  color: #fff;
+  filter: brightness(1.1);
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 calc(var(--lift) - 1px) 0 #0a101c,
+    0 var(--lift) 0 rgba(0, 0, 0, 0.8),
+    0 calc(var(--lift) + 4px) 12px rgba(0, 0, 0, 0.5);
+}
+
+.btn--steel:active {
+  transform: translateY(calc(var(--lift) - 1px));
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.5),
+    0 1px 0 #0a101c,
+    0 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gold-3);
+  outline-offset: 4px;
+  border-radius: 14px;
+}
+
+/* ── Chip & shiny text ───────────────────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 7px 14px 7px 10px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: linear-gradient(180deg, rgba(30, 61, 98, 0.8), rgba(7, 12, 30, 0.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.7),
+    0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.chip__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sky);
+  box-shadow: 0 0 0 3px rgba(71, 178, 217, 0.2), 0 0 10px var(--sky);
+}
+
+.shiny-text {
+  color: var(--text-muted);
+  background: linear-gradient(
+      110deg,
+      var(--text-muted) 0%,
+      var(--text-muted) 40%,
+      #ffffff 50%,
+      var(--text-muted) 60%,
+      var(--text-muted) 100%
+    );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shiny-text {
+    animation: shiny 5s linear infinite;
+  }
+}
+
+@keyframes shiny {
+  0% { background-position: 120% 0; }
+  60%, 100% { background-position: -20% 0; }
+}
