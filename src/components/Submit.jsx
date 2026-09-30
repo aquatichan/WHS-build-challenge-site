@@ -8,7 +8,7 @@ export function Submit() {
   return (
     <section id="submit" className="section" aria-labelledby="submit-title">
       <div className="container">
-        <SectionHeader index="05" eyebrow="What to submit" id="submit-title">
+        <SectionHeader index="06" eyebrow="What to submit" id="submit-title">
           Four things, <em>one deadline.</em>
         </SectionHeader>
         <p className="due-chip">

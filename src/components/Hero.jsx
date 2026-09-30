@@ -1,4 +1,4 @@
-import { PiArrowUpRight, PiScroll } from 'react-icons/pi';
+import { PiArrowUpRight, PiScroll, PiTrophyFill, PiArrowDown } from 'react-icons/pi';
 import { HERO, SITE } from '../content.js';
 import { FlipClock } from './FlipClock.jsx';
 import { ShinyText } from './bits/ShinyText.jsx';
@@ -34,6 +34,13 @@ export function Hero() {
                 <PiScroll aria-hidden="true" /> {HERO.secondaryCta}
               </a>
             </div>
+            <a className="prize-teaser" href="#prizes">
+              <span className="prize-teaser__icon" aria-hidden="true">
+                <PiTrophyFill />
+              </span>
+              <span>{HERO.prizeTeaser}</span>
+              <PiArrowDown aria-hidden="true" className="prize-teaser__arrow" />
+            </a>
           </div>
           <FlipClock />
         </div>

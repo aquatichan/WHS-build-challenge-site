@@ -17,6 +17,11 @@ import {
   PiVideoCamera,
   PiFileText,
   PiCode,
+  PiKeyboard,
+  PiCpu,
+  PiTrophy,
+  PiSticker,
+  PiGlobeHemisphereWest,
 } from 'react-icons/pi';
 
 /* ── Links & placeholders (fill these in later) ─────────────────────────── */
@@ -53,6 +58,8 @@ export const HERO = {
   headline: 'Build something Westside will',
   headlineAccent: 'actually use.',
   subhead: 'Westside HS Build Challenge · Nov 5 – Nov 30',
+  // Small callout under the buttons (links to the prizes section).
+  prizeTeaser: 'Top prize: mechanical keyboard, Pi kit, or earbuds',
   primaryCta: 'Sign up',
   secondaryCta: 'See the rules',
 };
@@ -72,25 +79,85 @@ export const ABOUT = [
   'All skill levels welcome.',
 ];
 
-/* ── Theme ─────────────────────────────────────────────────────────────── */
+/*
+ * ── Theme ─────────────────────────────────────────────────────────────────
+ * Each card has an `example`: a sample project shown when a visitor hovers,
+ * focuses or taps the card. These are illustrations only, not requirements.
+ */
 export const THEME = {
   title: 'Fix Westside',
-  intro: 'Pick a problem you actually run into. Here’s where to start looking.',
+  kicker: 'This year’s theme',
+  intro:
+    'Pick a problem you actually run into at Westside. Hover or tap a track to see a sample project with everything a strong entry covers.',
   cards: [
     {
       title: 'Student life',
       icon: PiUsers,
       items: ['Clubs', 'Lunch lines', 'Lost and found', 'Event discovery'],
+      example: {
+        name: 'LineLight',
+        tagline: 'Live lunch-line wait times',
+        objective:
+          'Cut the time students spend standing in lunch lines by showing which serving line is shortest right now.',
+        users: 'Students at lunch, plus cafeteria staff who run the lines.',
+        features: [
+          'One-tap line updates from a cafeteria tablet',
+          'Live wait estimate for every serving line',
+          'Today’s menu with “sold out” flags',
+          'Works on phones and on the hallway TVs',
+        ],
+        stack: ['React', 'Vite', 'Firebase Realtime DB', 'Vercel'],
+        data: 'Simulated line counts and a sample menu. No student information is collected.',
+        adoption: 'One tablet per line, the cafeteria manager’s OK, and a link on the hallway TVs.',
+        team: '2–3 people',
+        level: 'Intermediate',
+      },
     },
     {
       title: 'Learning',
       icon: PiBookOpenText,
       items: ['Tutoring matching', 'Study tools', 'Course planning'],
+      example: {
+        name: 'PeerPath',
+        tagline: 'Match students with peer tutors',
+        objective:
+          'Make it easy to get help by pairing students with peer tutors who know the subject and share a free period.',
+        users: 'Students who want help, peer tutors, and the tutoring sponsor.',
+        features: [
+          'Request help by subject and class period',
+          'Tutor availability calendar',
+          'Automatic matching with a confirm step',
+          'Hours log tutors can export for service hours',
+        ],
+        stack: ['Python', 'Flask', 'SQLite', 'HTML/CSS'],
+        data: 'A fake roster of 40 sample students and tutors.',
+        adoption: 'A teacher sponsor manages the tutor list; runs on a free host with school logins added later.',
+        team: '1–3 people',
+        level: 'Beginner friendly',
+      },
     },
     {
       title: 'Campus operations',
       icon: PiBuildings,
       items: ['Hall passes', 'Room booking', 'Announcements', 'Facilities reporting'],
+      example: {
+        name: 'FixIt Westside',
+        tagline: 'Report broken stuff in seconds',
+        objective:
+          'Get broken water fountains, lights and desks fixed faster by making reports quick and easy to track.',
+        users: 'Anyone on campus who spots a problem, and the facilities team.',
+        features: [
+          'QR sticker in each room opens a pre-filled report',
+          'Photo, location and category in under 30 seconds',
+          'Status tracking: reported → in progress → fixed',
+          'Triage dashboard that flags duplicate reports',
+        ],
+        stack: ['React Native', 'Expo', 'Supabase', 'QR codes'],
+        data: 'A sample campus room list and made-up reports.',
+        adoption: 'Print QR stickers and give the facilities lead dashboard access.',
+        team: '2–4 people',
+        level: 'Intermediate',
+      },
     },
   ],
 };
@@ -138,18 +205,105 @@ export const SUBMIT = {
   ],
 };
 
-/* ── Judging (points should add up to 100) ─────────────────────────────── */
-export const JUDGING = [
-  { label: 'Impact on Westside', points: 30, detail: 'Does it solve a real problem for students, teachers, or staff?' },
-  { label: 'Technical execution', points: 25, detail: 'Does it work, and is it built with care?' },
-  { label: 'Realistic to adopt', points: 20, detail: 'Could the school actually start using it?' },
-  { label: 'Design and ease of use', points: 15, detail: 'Is it clear and easy for anyone to pick up?' },
-  { label: 'Pitch', points: 10, detail: 'Can you explain the problem, the fix, and how it works?' },
-];
+/*
+ * ── Judging rubric ────────────────────────────────────────────────────────
+ * `points` should add up to 100. `full` = what earns full marks.
+ */
+export const JUDGING = {
+  intro:
+    'Every project is scored on the same 100-point rubric. Here’s each category’s weight and what earns full marks.',
+  criteria: [
+    {
+      label: 'Impact on Westside',
+      points: 30,
+      full: 'Solves a real, specific problem that students, teachers or staff have, and you can show who it helps.',
+    },
+    {
+      label: 'Technical execution',
+      points: 25,
+      full: 'The core features work in the demo, and every team member can explain how the app works.',
+    },
+    {
+      label: 'Realistic to adopt',
+      points: 20,
+      full: 'Clear about what the school would need (people, devices, cost, rules) to start using it.',
+    },
+    {
+      label: 'Design and ease of use',
+      points: 15,
+      full: 'Someone new can use it without help, and it’s clear, readable and accessible.',
+    },
+    {
+      label: 'Pitch',
+      points: 10,
+      full: 'Explains the problem, the fix and the impact clearly within the time limit.',
+    },
+  ],
+  // Scoring levels applied within each category (share of that category's points).
+  levels: [
+    { name: 'Exceptional', range: '90–100%' },
+    { name: 'Strong', range: '70–89%' },
+    { name: 'Developing', range: '40–69%' },
+    { name: 'Beginning', range: '0–39%' },
+  ],
+};
 
 /* ── Prizes ────────────────────────────────────────────────────────────── */
-export const PRIZES =
-  'Prizes for the top three teams, recognition for all finalists, and the chance to have your idea tried at Westside.';
+export const PRIZES = {
+  headline: 'Real prizes. A real shot at changing Westside.',
+  podium: [
+    {
+      place: '1st',
+      track: 'Westside 1st',
+      prize: 'Mechanical keyboard, Pi kit, or earbuds',
+      note: 'Winner picks',
+      icon: PiKeyboard,
+      tier: 'gold',
+    },
+    {
+      place: '2nd',
+      track: 'Westside 2nd',
+      prize: 'Arduino kit or tech accessories',
+      icon: PiCpu,
+      tier: 'silver',
+    },
+    {
+      place: '3rd',
+      track: 'Westside 3rd',
+      prize: 'Arduino kit or tech accessories',
+      icon: PiCpu,
+      tier: 'bronze',
+    },
+  ],
+  more: [
+    { title: 'Finalists', prize: '3D-printed trophy', icon: PiTrophy },
+    {
+      title: 'Every submitting team',
+      prize: 'Hack Club stickers, plus a free entry in a drawing for comfort items',
+      icon: PiSticker,
+    },
+    {
+      title: 'Public track',
+      prize: 'E-gift cards: $25–50 for 1st, $15–25 for 2nd and 3rd, plus any credits you land',
+      icon: PiGlobeHemisphereWest,
+    },
+  ],
+  footnote: 'Plus the chance to have your idea tried at Westside.',
+};
+
+/*
+ * ── Instagram ─────────────────────────────────────────────────────────────
+ * The feed only loads when a visitor clicks "Load posts" (keeps the page fast
+ * and avoids Instagram cookies until they choose to). To show specific posts,
+ * paste their links into `posts`, e.g. 'https://www.instagram.com/p/ABC123/'.
+ * With no posts listed, the profile grid embed is shown.
+ */
+export const INSTAGRAM = {
+  handle: 'whs_coderz',
+  url: 'https://www.instagram.com/whs_coderz/',
+  blurb: 'Build logs, meeting recaps, demo clips and winner announcements. Follow along.',
+  posts: [],
+};
 
 /*
  * ── Supporters ────────────────────────────────────────────────────────────
@@ -177,10 +331,11 @@ export const FOOTER = {
 
 /* ── Nav links (id must match a section id) ────────────────────────────── */
 export const NAV_LINKS = [
-  { id: 'about', label: 'About' },
+  { id: 'prizes', label: 'Prizes' },
   { id: 'theme', label: 'Theme' },
   { id: 'timeline', label: 'Timeline' },
   { id: 'rules', label: 'Rules' },
   { id: 'judging', label: 'Judging' },
+  { id: 'instagram', label: 'Instagram' },
   { id: 'faq', label: 'FAQ' },
 ];

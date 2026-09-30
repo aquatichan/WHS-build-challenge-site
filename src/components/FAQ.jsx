@@ -41,7 +41,7 @@ export function FAQ() {
   return (
     <section id="faq" className="section" aria-labelledby="faq-title">
       <div className="container faq">
-        <SectionHeader index="08" eyebrow="FAQ" id="faq-title">
+        <SectionHeader index="09" eyebrow="FAQ" id="faq-title">
           Questions, <em>answered.</em>
         </SectionHeader>
         <ul className="faq__list">

@@ -35,6 +35,13 @@ Search the project for these and replace them. All of them live in **`src/conten
 
 **Almost all of the copy is in `src/content.js`**, grouped by section (hero, highlights, what it is, theme, timeline, rules, submit, judging, prizes, sponsors, FAQ, footer, nav links). Edit the strings and save; the dev server reloads on its own.
 
+Things that live in `content.js` and are worth knowing about:
+
+- **`PRIZES`**: the podium (`podium`: 1st, 2nd, 3rd) plus the extra prize cards (`more`: finalists, every submitting team, public track).
+- **`THEME.cards[].example`**: the sample project shown when someone hovers over (desktop) or taps (phone) a theme track. Each has a name, tagline, objective, who it helps, features, tech stack, data, what adoption needs, team size and level.
+- **`JUDGING`**: the rubric. Each criterion has `points` (they should add up to 100) and `full` (what earns full marks). Weights are calculated from the points. `levels` are the four scoring bands.
+- **`INSTAGRAM`**: the handle and profile link. See below.
+
 Section headings (the serif titles on the metal plates, e.g. "Questions, *answered.*") are in each component in `src/components/`. The `<em>` part is the italic accent.
 
 Page title and social-share description: `index.html`.
@@ -66,6 +73,17 @@ All colors are CSS variables at the top of **`src/styles/tokens.css`**:
 The animated background's tile colors are in `src/lib/tessellation.js` (`FILLS` array). Its sky edges and gold glints use `rgba(71,178,217,…)` and `rgba(245,224,138,…)` in the same file.
 
 Fonts (Fraunces + Inter from Google Fonts) are loaded in `index.html` and set by `--font-display` / `--font-body` in `tokens.css`.
+
+## Instagram
+
+The Instagram section shows a profile card with a **Follow** button and a phone mockup. The phone only loads real Instagram content after a visitor taps **Load our posts**. That keeps the first load fast, and no Instagram cookies are set until someone chooses to load them.
+
+- With `INSTAGRAM.posts` empty, the phone loads the profile grid (`instagram.com/whs_coderz/embed/`). Instagram doesn't officially support profile embeds, so this can occasionally show a "view on Instagram" card instead of the grid.
+- For a guaranteed embed, paste specific post links into `posts`:
+  ```js
+  posts: ['https://www.instagram.com/p/POST_ID/', 'https://www.instagram.com/reel/REEL_ID/'],
+  ```
+  These use Instagram's official embed script.
 
 ## Adding sponsor logos
 
@@ -118,6 +136,8 @@ scripts/prerender.mjs      bakes the page into static HTML at build time
 
 - Semantic landmarks and headings, a skip link, keyboard-operable menu and FAQ (`aria-expanded`), and gold `:focus-visible` rings throughout.
 - All text meets WCAG AA contrast on its background.
-- `prefers-reduced-motion`: the background renders as one static frame, and the flip animation, shimmer, scroll reveals and glow pulses are turned off.
-- The background runs at about 30fps, pauses when the tab is hidden, and uses fewer, larger tiles on phones.
+- `prefers-reduced-motion`: the background renders as one static frame, and the flip animation, shimmer, flicker, scroll reveals and glow pulses are turned off. The "Fix Westside" heading stays fully lit.
+- The background runs at about 30fps, pauses when the tab is hidden, and uses fewer, larger tiles and fewer light pools on phones. Its light pools, flicker bursts and cursor glow are all in `src/lib/tessellation.js` (see the comment at the top).
+- Theme examples work without hover: on desktop the tracks are keyboard-navigable tabs (arrow keys), and on phones each track is a tap-to-open button.
+- The judging rubric is a real `<table>` (it becomes stacked cards on phones), and the weight bar labels every segment directly, so color never carries meaning on its own.
 - Content is fully visible without JavaScript (prerendered HTML).

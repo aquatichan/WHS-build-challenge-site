@@ -11,6 +11,7 @@ import { Judging } from './components/Judging.jsx';
 import { Prizes } from './components/Prizes.jsx';
 import { Supporters } from './components/Supporters.jsx';
 import { FAQ } from './components/FAQ.jsx';
+import { Instagram } from './components/Instagram.jsx';
 import { Footer } from './components/Footer.jsx';
 
 export default function App() {
@@ -24,13 +25,14 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Highlights />
+        <Prizes />
         <About />
         <Theme />
         <Timeline />
         <Rules />
         <Submit />
         <Judging />
-        <Prizes />
+        <Instagram />
         <Supporters />
         <FAQ />
       </main>

@@ -6,7 +6,7 @@ export function About() {
   return (
     <section id="about" className="section" aria-labelledby="about-title">
       <div className="container about">
-        <SectionHeader index="01" eyebrow="What it is" id="about-title">
+        <SectionHeader index="02" eyebrow="What it is" id="about-title">
           A month to build <em>for your school.</em>
         </SectionHeader>
         <Reveal className="about__body">

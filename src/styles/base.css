@@ -104,8 +104,9 @@ main:focus {
 .skip-link {
   position: fixed;
   left: 12px;
-  top: -100px;
+  top: 12px;
   z-index: 100;
+  transform: translateY(-200%);
   padding: 10px 16px;
   border-radius: 10px;
   background: var(--surface-2);
@@ -116,7 +117,7 @@ main:focus {
 }
 
 .skip-link:focus {
-  top: 12px;
+  transform: none;
 }
 
 .container {
@@ -199,6 +200,6 @@ em {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(120% 70% at 50% 0%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.62) 70%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 50%, rgba(0, 0, 0, 0.78) 100%);
+    radial-gradient(120% 80% at 50% 30%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 75%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.62) 100%);
 }

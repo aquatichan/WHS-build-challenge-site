@@ -6,7 +6,7 @@ export function Rules() {
   return (
     <section id="rules" className="section" aria-labelledby="rules-title">
       <div className="container">
-        <SectionHeader index="04" eyebrow="Rules" id="rules-title">
+        <SectionHeader index="05" eyebrow="Rules" id="rules-title">
           The fine print, <em>engraved.</em>
         </SectionHeader>
         <Reveal className="engraved">

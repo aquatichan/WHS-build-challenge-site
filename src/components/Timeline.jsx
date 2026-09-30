@@ -29,7 +29,7 @@ export function Timeline() {
   return (
     <section id="timeline" className="section" aria-labelledby="timeline-title">
       <div className="container">
-        <SectionHeader index="03" eyebrow="Timeline" id="timeline-title">
+        <SectionHeader index="04" eyebrow="Timeline" id="timeline-title">
           From reveal <em>to pitch.</em>
         </SectionHeader>
 

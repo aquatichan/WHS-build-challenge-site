@@ -1,5 +1,5 @@
-import { PiEnvelopeSimple, PiBellRinging, PiSparkle } from 'react-icons/pi';
-import { FOOTER, SITE } from '../content.js';
+import { PiEnvelopeSimple, PiBellRinging, PiSparkle, PiInstagramLogo } from 'react-icons/pi';
+import { FOOTER, INSTAGRAM, SITE } from '../content.js';
 import { LogoMark } from './Logo.jsx';
 import { ShinyText } from './bits/ShinyText.jsx';
 
@@ -27,6 +27,15 @@ export function Footer() {
             <PiBellRinging aria-hidden="true" />
             <span>
               Remind code: <strong className="code">{SITE.remindCode}</strong>
+            </span>
+          </li>
+          <li>
+            <PiInstagramLogo aria-hidden="true" />
+            <span>
+              Instagram:{' '}
+              <a href={INSTAGRAM.url} target="_blank" rel="noopener noreferrer">
+                @{INSTAGRAM.handle}
+              </a>
             </span>
           </li>
           <li>
