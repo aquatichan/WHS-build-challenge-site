@@ -427,11 +427,8 @@
 }
 
 .prizes__foot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   margin-top: 28px;
+  text-wrap: balance;
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.2rem;
@@ -440,7 +437,9 @@
 }
 
 .prizes__foot svg {
-  flex: none;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: -0.1em;
   color: var(--gold-3);
 }
 
@@ -846,12 +845,15 @@
   }
 }
 
-.blueprint__cell--obj { grid-area: obj; }
-.blueprint__cell--who { grid-area: who; }
-.blueprint__cell--stack { grid-area: stack; }
-.blueprint__cell--feat { grid-area: feat; }
-.blueprint__cell--data { grid-area: data; }
-.blueprint__cell--adopt { grid-area: adopt; }
+/* Named areas only exist from 720px up; on phones the cells simply stack in DOM order. */
+@media (min-width: 720px) {
+  .blueprint__cell--obj { grid-area: obj; }
+  .blueprint__cell--who { grid-area: who; }
+  .blueprint__cell--stack { grid-area: stack; }
+  .blueprint__cell--feat { grid-area: feat; }
+  .blueprint__cell--data { grid-area: data; }
+  .blueprint__cell--adopt { grid-area: adopt; }
+}
 
 .blueprint__cell.blueprint__cell--obj dd {
   font-family: var(--font-display);

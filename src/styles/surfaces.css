@@ -412,6 +412,13 @@
     0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
+@media (max-width: 519px) {
+  .chip {
+    border-radius: 14px;
+    font-size: 0.75rem;
+  }
+}
+
 .chip__dot {
   flex: none;
   width: 8px;

@@ -106,6 +106,8 @@ export function Nav() {
         </span>
       </div>
 
+      {open && <div className="nav__scrim" aria-hidden="true" onClick={() => setOpen(false)} />}
+
       <nav id="mobile-menu" className="nav__menu" aria-label="Sections" hidden={!open}>
         <ul>
           {NAV_LINKS.map((l) => (

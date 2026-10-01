@@ -21,7 +21,8 @@ export function useScrollLight() {
       raf = 0;
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      const enter = (vh - r.top) / (vh * 0.75);
+      // Fully lit once the top of the section is ~45% up the screen.
+      const enter = (vh - r.top) / (vh * 0.55);
       const exit = r.bottom / (vh * 0.55);
       const lit = Math.max(0, Math.min(1, enter, exit));
       el.style.setProperty('--lit', lit.toFixed(3));

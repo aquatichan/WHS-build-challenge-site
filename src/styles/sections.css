@@ -6,6 +6,25 @@
   padding: 10px var(--gutter) 0;
 }
 
+/* Once scrolling, a solid fade sits behind the bar (and the gap above it) so
+   page text never shows through around the floating nav. */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -10px;
+  z-index: -1;
+  background: #02040a;
+  box-shadow: 0 8px 14px rgba(2, 4, 10, 0.75);
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+
+.nav.is-scrolled::before,
+.nav.is-open::before {
+  opacity: 1;
+}
+
 .nav__bar {
   position: relative;
   display: flex;
@@ -32,7 +51,7 @@
 .nav.is-scrolled .nav__bar {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 0, 0, 0.1) 100%),
-    rgba(4, 7, 18, 0.88);
+    rgba(4, 7, 18, 0.97);
 }
 
 .nav__brand {
@@ -133,6 +152,23 @@
     inset 0 2px 4px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(0, 0, 0, 0.6),
     0 1px 0 #070b14;
+}
+
+.nav__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: rgba(0, 0, 0, 0.62);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav__scrim {
+    animation: fade-in 0.2s ease-out;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
 }
 
 .nav__menu {
@@ -1175,6 +1211,12 @@
 
 .faq__panel-inner {
   overflow: hidden;
+}
+
+/* Fully hide collapsed answers (not just clipped) once the close animation ends. */
+.faq__item:not(.is-open) .faq__panel-inner {
+  visibility: hidden;
+  transition: visibility 0s linear 0.32s;
 }
 
 .faq__panel-inner p {
