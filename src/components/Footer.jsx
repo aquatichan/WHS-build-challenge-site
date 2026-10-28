@@ -9,7 +9,7 @@ export function Footer() {
       <span className="gold-rule gold-rule--wide" aria-hidden="true" />
       <div className="container footer__inner">
         <div className="footer__brand">
-          <LogoMark size={40} />
+          <LogoMark size={48} />
           <div>
             <p className="footer__name">{SITE.name}</p>
             <p className="footer__runby">{FOOTER.runBy}</p>
