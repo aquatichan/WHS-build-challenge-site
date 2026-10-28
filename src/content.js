@@ -302,6 +302,14 @@ export const INSTAGRAM = {
   handle: 'whs_coderz',
   url: 'https://www.instagram.com/whs_coderz/',
   blurb: 'Build logs, meeting recaps, demo clips and winner announcements. Follow along.',
+  // Shown on the profile card and the phone mockup. Update when the numbers move.
+  views: '150K+',
+  stats: [
+    { value: '19', label: 'posts' },
+    { value: '121', label: 'followers' },
+    { value: '150K+', label: 'views' },
+  ],
+  bio: ['Join Coding Club!', 'Meetings in N225 w/ Ms. Neha', 'Thursdays 12:01 – 12:31'],
   posts: [],
 };
 
