@@ -293,10 +293,8 @@ export const PRIZES = {
 
 /*
  * ── Instagram ─────────────────────────────────────────────────────────────
- * The feed only loads when a visitor clicks "Load posts" (keeps the page fast
- * and avoids Instagram cookies until they choose to). To show specific posts,
- * paste their links into `posts`, e.g. 'https://www.instagram.com/p/ABC123/'.
- * With no posts listed, the profile grid embed is shown.
+ * The phone is a static mockup: nothing is fetched from Instagram (it's blocked
+ * on school computers). Links still open the profile for anyone who can reach it.
  */
 export const INSTAGRAM = {
   handle: 'whs_coderz',
@@ -310,7 +308,6 @@ export const INSTAGRAM = {
     { value: '150K+', label: 'views' },
   ],
   bio: ['Join Coding Club!', 'Meetings in N225 w/ Ms. Neha', 'Thursdays 12:01 – 12:31'],
-  posts: [],
 };
 
 /*
