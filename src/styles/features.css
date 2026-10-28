@@ -1350,27 +1350,6 @@
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.8);
 }
 
-.ig-frame {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  padding-top: 48px;
-  background: #fff;
-}
-
-.ig-posts {
-  height: 100%;
-  overflow-y: auto;
-  padding: 52px 8px 8px;
-  background: #fff;
-}
-
-.ig-posts .instagram-media {
-  min-width: 0 !important;
-  margin: 0 0 12px !important;
-}
-
 .ig-facade {
   display: flex;
   flex-direction: column;
@@ -1479,16 +1458,4 @@
   justify-items: center;
   margin-top: auto;
   text-align: center;
-}
-
-.ig-facade__cta p {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8125rem;
-  color: var(--text-soft);
-}
-
-.ig-facade__cta p svg {
-  flex: none;
 }

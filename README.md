@@ -76,14 +76,7 @@ Fonts (Fraunces + Inter from Google Fonts) are loaded in `index.html` and set by
 
 ## Instagram
 
-The Instagram section shows a profile card with a **Follow** button and a phone mockup. The phone only loads real Instagram content after a visitor taps **Load our posts**. That keeps the first load fast, and no Instagram cookies are set until someone chooses to load them.
-
-- With `INSTAGRAM.posts` empty, the phone loads the profile grid (`instagram.com/whs_coderz/embed/`). Instagram doesn't officially support profile embeds, so this can occasionally show a "view on Instagram" card instead of the grid.
-- For a guaranteed embed, paste specific post links into `posts`:
-  ```js
-  posts: ['https://www.instagram.com/p/POST_ID/', 'https://www.instagram.com/reel/REEL_ID/'],
-  ```
-  These use Instagram's official embed script.
+The Instagram section shows a profile card with a **Follow** button and a static phone mockup of the profile (stats, bio and placeholder tiles). Nothing is loaded from Instagram, so the section works on school computers where Instagram is blocked. Update the numbers and bio in `INSTAGRAM` in `src/content.js`.
 
 ## Adding sponsor logos
 
