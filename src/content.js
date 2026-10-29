@@ -30,9 +30,10 @@ export const SITE = {
   school: 'Westside High School',
   club: 'Coding Club',
   city: 'Houston, TX',
-  signupUrl: '[SIGNUP_FORM_URL]',
-  room: '[ROOM]',
-  contactEmail: '[CONTACT_EMAIL]',
+  signupUrl: 'https://forms.gle/iyJXFcx57hUizE216',
+  room: 'N225',
+  contactEmail1: 'Neha.Chippagiri@houstonisd.org',
+  contactEmail2: 's1834490@online.houstonisd.org',
   remindCode: '26code27',
 };
 
@@ -43,7 +44,7 @@ export const SITE = {
  *   -05:00 (CDT) before the first Sunday of November, -06:00 (CST) after.
  */
 export const DATES = {
-  kickoff: '2026-11-05T00:00:00-06:00',
+  kickoff: '2026-11-05T12:00:00-06:00',
   kickoffLabel: 'Thu, Nov 5',
   deadline: '2026-11-30T23:59:00-06:00',
   deadlineLabel: 'Mon, Nov 30 · 11:59 PM',
@@ -169,8 +170,8 @@ export const THEME = {
  * shows as "Up next").
  */
 export const TIMELINE = [
-  { date: 'Oct 29', start: '2026-10-29', title: 'Rules reveal', detail: 'At Coding Club.' },
-  { date: 'Nov 5', start: '2026-11-05', title: 'Kickoff', detail: 'The build clock starts.' },
+  { date: 'Oct 29', start: '2026-10-29', title: 'Organization week', detail: 'At Coding Club.' },
+  { date: 'Nov 5', start: '2026-11-05', title: 'Rules reveal & Kickoff', detail: 'The build clock starts.' },
   { date: 'Nov 12', start: '2026-11-12', title: 'Checkpoint 1', detail: 'Idea plus sketch.' },
   { date: 'Nov 19', start: '2026-11-19', title: 'Checkpoint 2', detail: 'Something running.' },
   { date: 'Nov 23–27', start: '2026-11-23', end: '2026-11-27', title: 'Thanksgiving break', detail: 'School is out.' },
@@ -324,14 +325,13 @@ export const FAQ = [
   { q: 'Can I work alone?', a: 'Yes. Teams can be 1–4 people, so solo entries are welcome.' },
   { q: 'Can I use AI tools?', a: 'Yes, but you must be able to explain your code and how your app works.' },
   { q: 'Can I reuse a project?', a: 'No. All work starts on or after Nov 5.' },
-  { q: 'When and where does Coding Club meet?', a: `Thursdays, ${SITE.room}.` },
+  { q: 'When and where does Coding Club meet?', a: `Thursdays, second half of lunch, ${SITE.room}.` },
   { q: 'How do I get updates?', a: `Join our Remind with the code ${SITE.remindCode}.` },
 ];
 
 /* ── Footer ────────────────────────────────────────────────────────────── */
 export const FOOTER = {
-  runBy: 'Run by the Westside High School Coding Club',
-  teaser: 'Spring hackathon coming soon.',
+  runBy: 'Run by the Westside High School Coding Club'
 };
 
 /* ── Nav links (id must match a section id) ────────────────────────────── */

@@ -1,4 +1,4 @@
-import { PiEnvelopeSimple, PiBellRinging, PiSparkle, PiInstagramLogo } from 'react-icons/pi';
+import { PiEnvelopeSimple, PiBellRinging, PiInstagramLogo } from 'react-icons/pi';
 import { FOOTER, INSTAGRAM, SITE } from '../content.js';
 import { LogoMark } from './Logo.jsx';
 import { ShinyText } from './bits/ShinyText.jsx';
@@ -20,7 +20,13 @@ export function Footer() {
           <li>
             <PiEnvelopeSimple aria-hidden="true" />
             <span>
-              Contact: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+              Sponsor Contact: <a href={`mailto:${SITE.contactEmail1}`}>{SITE.contactEmail1}</a>
+            </span>
+          </li>
+          <li>
+            <PiEnvelopeSimple aria-hidden="true" />
+            <span>
+              Student Contact: <a href={`mailto:${SITE.contactEmail2}`}>{SITE.contactEmail2}</a>
             </span>
           </li>
           <li>
@@ -37,10 +43,6 @@ export function Footer() {
                 @{INSTAGRAM.handle}
               </a>
             </span>
-          </li>
-          <li>
-            <PiSparkle aria-hidden="true" />
-            <ShinyText>{FOOTER.teaser}</ShinyText>
           </li>
         </ul>
       </div>
