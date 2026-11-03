@@ -112,7 +112,7 @@ export function Theme() {
       <div className="container">
         <header className="theme-stage__head">
           <p className="theme-stage__kicker">
-            <span className="plate__index">03</span>
+            <span className="plate__index">02</span>
             <span aria-hidden="true" className="plate__rule" />
             {THEME.kicker}
           </p>
@@ -140,7 +140,7 @@ export function Theme() {
                     ? { role: 'tab', 'aria-selected': selected, tabIndex: selected ? 0 : -1 }
                     : { 'aria-expanded': selected })}
                   aria-controls={panelId}
-                  className={`track glass ${selected ? 'is-active' : ''}`}
+                  className={`track track--${i} glass ${selected ? 'is-active' : ''}`}
                   onClick={() => setActive(i)}
                   onPointerEnter={(e) => finePointer && e.pointerType === 'mouse' && setActive(i)}
                 >
@@ -169,7 +169,7 @@ export function Theme() {
           })}
         </div>
         {wide && (
-          <div className="blueprint-wrap" style={{ '--pointer': `${(active * 2 + 1) * (100 / 6)}%` }}>
+          <div className={`blueprint-wrap blueprint-wrap--${active}`} style={{ '--pointer': `${(active * 2 + 1) * (100 / 6)}%` }}>
             {panel}
           </div>
         )}

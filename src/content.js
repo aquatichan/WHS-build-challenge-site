@@ -7,21 +7,17 @@
  */
 import {
   PiCalendarBlank,
+  PiCalendarCheck,
   PiUsersThree,
-  PiStairs,
   PiPresentationChart,
   PiUsers,
   PiBookOpenText,
   PiBuildings,
   PiLinkSimple,
   PiVideoCamera,
-  PiFileText,
-  PiCode,
-  PiKeyboard,
-  PiCpu,
-  PiTrophy,
-  PiSticker,
-  PiGlobeHemisphereWest,
+  PiGithubLogo,
+  PiMedal,
+  PiCertificate,
 } from 'react-icons/pi';
 
 /* ── Links & placeholders (fill these in later) ─────────────────────────── */
@@ -30,10 +26,16 @@ export const SITE = {
   school: 'Westside High School',
   club: 'Coding Club',
   city: 'Houston, TX',
-  signupUrl: 'https://forms.gle/iyJXFcx57hUizE216',
+  signupUrl: 'https://forms.gle/3MM2VY8DjwcP7MJN8',
+  submitUrl: 'https://forms.gle/8miy6xgJ9mMFYRfK8',
   room: 'N225',
+  // Kickoff room for the announcement bar (N225 or Mini Theater). Leave '' to hide it.
+  kickoffRoom: '',
+  // Girls Who Code logo for the header and footer, e.g. './gwc-logo.png' in /public. Leave '' to show text instead.
+  gwcLogo: './gwc-logo.png',
   contactEmail1: 'Neha.Chippagiri@houstonisd.org',
   contactEmail2: 's1834490@online.houstonisd.org',
+  contactEmail3: 's2265162@online.houstonisd.org',
   remindCode: '26code27',
 };
 
@@ -54,30 +56,26 @@ export const DATES = {
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 export const HERO = {
-  eyebrow: 'Westside High School Coding Club · Houston, TX',
+  eyebrow: 'Westside High School Coding Club × Girls Who Code · Houston, TX',
   // Rendered as: "Build something Westside will" + <em>"actually use."</em>
   headline: 'Build something Westside will',
   headlineAccent: 'actually use.',
-  subhead: 'Westside HS Build Challenge · Nov 5 – Nov 30',
+  subhead:
+    'Teams of 1–4 build an app or tool that improves life at Westside for students, teachers or staff. Finalists pitch to administrators on Dec 3.',
   // Small callout under the buttons (links to the prizes section).
-  prizeTeaser: 'Top prize: mechanical keyboard, Pi kit, or earbuds',
+  prizeTeaser: 'Top prize: your app, used by all of Westside',
   primaryCta: 'Sign up',
+  // Small print under the Sign up button.
+  signupNote: 'Sign up as soon as you can (by Nov 30 at the latest). It’s how we count teams and send updates.',
   secondaryCta: 'See the rules',
 };
 
-/* ── Highlights band ───────────────────────────────────────────────────── */
+/* ── Key dates (chips under the hero) ──────────────────────────────────── */
 export const HIGHLIGHTS = [
-  { value: '4 weeks', caption: 'Nov 5 – Nov 30', icon: PiCalendarBlank },
-  { value: 'Teams of 1–4', caption: 'Solo entries welcome', icon: PiUsersThree },
-  { value: 'All skill levels', caption: 'First-timers welcome', icon: PiStairs },
-  { value: 'Pitch to admins', caption: 'Finalists · Dec 3', icon: PiPresentationChart },
-];
-
-/* ── What it is (3 short sentences) ────────────────────────────────────── */
-export const ABOUT = [
-  'Students form teams of 1–4 and build an app or tool that improves life at Westside for students, teachers, or staff.',
-  'Finalists pitch to school administrators on Dec 3, and we’re hoping the winning idea gets tried at our school.',
-  'All skill levels welcome.',
+  { label: 'Kickoff', value: 'Nov 5, 12 PM', icon: PiCalendarBlank },
+  { label: 'Submissions due', value: 'Mon, Nov 30', icon: PiCalendarCheck },
+  { label: 'Pitch to admins', value: 'Finalists · Dec 3', icon: PiPresentationChart },
+  { label: 'Teams of 1–4', value: 'All skill levels', icon: PiUsersThree },
 ];
 
 /*
@@ -164,21 +162,23 @@ export const THEME = {
 };
 
 /*
- * ── Timeline ──────────────────────────────────────────────────────────────
- * `start` / `end` are YYYY-MM-DD in the visitor's local time. The phase that
- * most recently started glows as "Now" (before the first one, the first phase
- * shows as "Up next").
+ * ── Announcement bar ──────────────────────────────────────────────────────
+ * The bar at the top of the page shows the next milestone that hasn't passed.
+ * `start` is either a full timestamp (passes at that moment) or YYYY-MM-DD
+ * (passes at the end of that day, or of `end`). Days are counted in Houston time.
+ * `link` adds a Sign up or Submit link.
  */
-export const TIMELINE = [
-  { date: 'Oct 29', start: '2026-10-29', title: 'Organization week', detail: 'At Coding Club.' },
-  { date: 'Nov 5', start: '2026-11-05', title: 'Rules reveal & Kickoff', detail: 'The build clock starts.' },
-  { date: 'Nov 12', start: '2026-11-12', title: 'Checkpoint 1', detail: 'Idea plus sketch.' },
-  { date: 'Nov 19', start: '2026-11-19', title: 'Checkpoint 2', detail: 'Something running.' },
-  { date: 'Nov 23–27', start: '2026-11-23', end: '2026-11-27', title: 'Thanksgiving break', detail: 'School is out.' },
-  { date: 'Nov 30', start: '2026-11-30', title: 'Submissions due', detail: 'Everything in by the deadline.' },
-  { date: 'Dec 1–2', start: '2026-12-01', end: '2026-12-02', title: 'Round 1 judging', detail: 'Judges review every submission.' },
-  { date: 'Dec 3', start: '2026-12-03', title: 'Finalists pitch to admins', detail: 'The top teams present to school administrators.' },
+export const MILESTONES = [
+  { start: DATES.kickoff, label: 'Kickoff', when: 'Thu, Nov 5, 12 PM', where: SITE.kickoffRoom, link: 'signup' },
+  { start: '2026-11-12', label: 'Suggested: Checkpoint 1: idea plus sketch', when: 'Thu, Nov 12' },
+  { start: '2026-11-19', label: 'Suggested: Checkpoint 2: something running', when: 'Thu, Nov 19' },
+  { start: DATES.deadline, label: 'Submissions due', when: 'Mon, Nov 30, 11:59 PM', link: 'submit' },
+  { start: '2026-12-01', end: '2026-12-02', label: 'Round 1 judging', when: 'Dec 1–2' },
+  { start: '2026-12-03', label: 'Finalists pitch to admins', when: 'Thu, Dec 3' },
 ];
+// From this day until the deadline, the Submit link shows whatever milestone is next.
+export const SUBMIT_LINK_FROM = '2026-11-23';
+export const MILESTONES_DONE = 'Thanks for building. Winners announced soon.';
 
 /* ── Rules ─────────────────────────────────────────────────────────────── */
 export const RULES = [
@@ -188,22 +188,34 @@ export const RULES = [
   'AI coding tools are allowed, but every team member must be able to explain how their app works.',
   'No real student data. Use fake or sample data only.',
   'Keep content school-appropriate.',
-  'Coding Club officers help run and judge the event and cannot compete.',
+  'Coding Club and Girls Who Code officers help run and judge the event and cannot compete.',
 ];
 
 /* ── What to submit ────────────────────────────────────────────────────── */
 export const SUBMIT = {
-  due: 'Due Mon, Nov 30',
+  due: 'Due Mon, Nov 30 at 11:59 PM CST. Thanksgiving break is Nov 23–27, so plan to finish before it.',
   items: [
-    { title: 'Working link or demo', detail: 'A live link, or a demo the judges can try.', icon: PiLinkSimple },
-    { title: '2-minute video', detail: 'Show it working and who it’s for.', icon: PiVideoCamera },
+    { title: 'Public GitHub repo', detail: 'The judges read your source here. Make sure the repo is public.', icon: PiGithubLogo },
     {
-      title: 'One-page writeup',
-      detail: 'The problem, who it helps, how it works, and what the school would need to adopt it.',
-      icon: PiFileText,
+      title: 'Working demo link',
+      detail:
+        'Host web apps on Firebase (recommended), Vercel, Render, Netlify or Cloudflare. For iOS or Android apps, link a video of your team using the app.',
+      icon: PiLinkSimple,
     },
-    { title: 'Code link', detail: 'Where the judges can read your source.', icon: PiCode },
+    {
+      title: '2-minute pitch video',
+      detail: 'The problem, who it helps and how it works. Upload it to YouTube or Google Drive and set it to public.',
+      icon: PiVideoCamera,
+    },
+    {
+      title: 'What Westside would need',
+      detail: 'Anything the school would need to adopt your app, like projectors, teacher outreach or an engineering build.',
+      icon: PiBuildings,
+    },
   ],
+  dueShort: 'Mon, Nov 30 at 11:59 PM',
+  note: 'The form also asks which AI tools you used and what you used them for.',
+  cta: 'Submit your project',
 };
 
 /*
@@ -251,65 +263,57 @@ export const JUDGING = {
 
 /* ── Prizes ────────────────────────────────────────────────────────────── */
 export const PRIZES = {
-  headline: 'Real prizes. A real shot at changing Westside.',
+  headline: 'Real users. A real shot at changing Westside.',
   podium: [
     {
       place: '1st',
       track: 'Westside 1st',
-      prize: 'Mechanical keyboard, Pi kit, or earbuds',
-      note: 'Winner picks',
-      icon: PiKeyboard,
+      prize: 'Your app goes schoolwide',
+      note: 'Used by every student and teacher, plus a 3D-printed trophy',
+      icon: PiUsersThree,
       tier: 'gold',
     },
     {
       place: '2nd',
       track: 'Westside 2nd',
-      prize: 'Arduino kit or tech accessories',
-      icon: PiCpu,
+      prize: '3D-printed plaque',
+      icon: PiMedal,
       tier: 'silver',
     },
     {
       place: '3rd',
       track: 'Westside 3rd',
-      prize: 'Arduino kit or tech accessories',
-      icon: PiCpu,
+      prize: '3D-printed plaque',
+      icon: PiMedal,
       tier: 'bronze',
     },
   ],
   more: [
-    { title: 'Finalists', prize: '3D-printed trophy', icon: PiTrophy },
+    { title: 'Finalists', prize: 'Pitch your app to administrators on Dec 3', icon: PiPresentationChart },
     {
-      title: 'Every submitting team',
-      prize: 'Hack Club stickers, plus a free entry in a drawing for comfort items',
-      icon: PiSticker,
-    },
-    {
-      title: 'Public track',
-      prize: 'E-gift cards: $25–50 for 1st, $15–25 for 2nd and 3rd, plus any credits you land',
-      icon: PiGlobeHemisphereWest,
+      title: 'Everyone who submits',
+      prize: 'A certificate signed by WHS admins, plus Hack Club stickers',
+      icon: PiCertificate,
     },
   ],
-  footnote: 'Plus the chance to have your idea tried at Westside.',
 };
 
-/*
- * ── Instagram ─────────────────────────────────────────────────────────────
- * The phone is a static mockup: nothing is fetched from Instagram (it's blocked
- * on school computers). Links still open the profile for anyone who can reach it.
- */
-export const INSTAGRAM = {
-  handle: 'whs_coderz',
-  url: 'https://www.instagram.com/whs_coderz/',
-  blurb: 'Build logs, meeting recaps, demo clips and winner announcements. Follow along.',
-  // Shown on the profile card and the phone mockup. Update when the numbers move.
-  views: '150K+',
-  stats: [
-    { value: '19', label: 'posts' },
-    { value: '121', label: 'followers' },
-    { value: '150K+', label: 'views' },
-  ],
-  bio: ['Join Coding Club!', 'Meetings in N225 w/ Ms. Neha', 'Thursdays 12:01 – 12:31'],
-};
+/* ── Instagram follow cards (footer) ───────────────────────────────────── */
+export const INSTAGRAM_ACCOUNTS = [
+  {
+    handle: 'whs_coderz',
+    club: 'Westside Coding Club',
+    url: 'https://www.instagram.com/whs_coderz/',
+    blurb: 'Build logs, meeting recaps and winner announcements.',
+  },
+  {
+    handle: 'gwc_whs',
+    club: 'Girls Who Code at Westside',
+    url: 'https://www.instagram.com/gwc_whs/',
+    blurb: 'Meetings, events and projects from Westside’s GWC chapter.',
+    gwc: true,
+  },
+];
 
 /*
  * ── Supporters ────────────────────────────────────────────────────────────
@@ -320,27 +324,29 @@ export const INSTAGRAM = {
 export const SPONSORS = [];
 
 /* ── FAQ ───────────────────────────────────────────────────────────────── */
+// Optional `href` + `linkText` add a link after the answer.
 export const FAQ = [
-  { q: 'Do I need experience?', a: 'No. All skill levels are welcome, and we’ll help you form a team.' },
+  { q: 'Who’s running this?', a: 'Westside Coding Club and Girls Who Code.' },
+  { q: 'Do I need experience?', a: 'No. All skill levels are welcome, and we’ll help you form a team if you need one.' },
   { q: 'Can I work alone?', a: 'Yes. Teams can be 1–4 people, so solo entries are welcome.' },
   { q: 'Can I use AI tools?', a: 'Yes, but you must be able to explain your code and how your app works.' },
   { q: 'Can I reuse a project?', a: 'No. All work starts on or after Nov 5.' },
+  { q: 'How do I submit?', a: 'Through the submission form, by Mon, Nov 30.', href: SITE.submitUrl, linkText: 'Click me!' },
   { q: 'When and where does Coding Club meet?', a: `Thursdays, second half of lunch, ${SITE.room}.` },
-  { q: 'How do I get updates?', a: `Join our Remind with the code ${SITE.remindCode}.` },
+  { q: 'When and where does Girls Who Code meet?', a: `Every Other Tuesday, first half of lunch, ${SITE.room}.` },
+  { q: 'How do I get updates?', a: `Join the Coding Club Remind with code ${SITE.remindCode}.` },
 ];
 
 /* ── Footer ────────────────────────────────────────────────────────────── */
 export const FOOTER = {
-  runBy: 'Run by the Westside High School Coding Club'
+  runBy: 'Run by Westside High School Coding Club and Girls Who Code'
 };
 
 /* ── Nav links (id must match a section id) ────────────────────────────── */
 export const NAV_LINKS = [
   { id: 'prizes', label: 'Prizes' },
   { id: 'theme', label: 'Theme' },
-  { id: 'timeline', label: 'Timeline' },
   { id: 'rules', label: 'Rules' },
   { id: 'judging', label: 'Judging' },
-  { id: 'instagram', label: 'Instagram' },
   { id: 'faq', label: 'FAQ' },
 ];

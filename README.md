@@ -37,7 +37,7 @@ Search the project for these and replace them. All of them live in **`src/conten
 
 Things that live in `content.js` and are worth knowing about:
 
-- **`PRIZES`**: the podium (`podium`: 1st, 2nd, 3rd) plus the extra prize cards (`more`: finalists, every submitting team, public track).
+- **`PRIZES`**: the podium (`podium`: 1st, 2nd, 3rd) plus the extra prize cards (`more`: finalists, every submitting team).
 - **`THEME.cards[].example`**: the sample project shown when someone hovers over (desktop) or taps (phone) a theme track. Each has a name, tagline, objective, who it helps, features, tech stack, data, what adoption needs, team size and level.
 - **`JUDGING`**: the rubric. Each criterion has `points` (they should add up to 100) and `full` (what earns full marks). Weights are calculated from the points. `levels` are the four scoring bands.
 - **`INSTAGRAM`**: the handle and profile link. See below.

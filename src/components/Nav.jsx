@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { PiList, PiX, PiArrowUpRight } from 'react-icons/pi';
 import { NAV_LINKS, SITE } from '../content.js';
 import { LogoMark } from './Logo.jsx';
+import { GwcMark } from './GwcMark.jsx';
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -62,8 +63,12 @@ export function Nav() {
   return (
     <header className={`nav ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="nav__bar">
-        <a className="nav__brand" href="#top" aria-label={`${SITE.name}, back to top`}>
-          <LogoMark size={36} />
+        <a className="nav__brand" href="#top" aria-label={`${SITE.name}, Coding Club and Girls Who Code, back to top`}>
+          <span className="lockup">
+            <LogoMark size={36} />
+            <span className="lockup__x" aria-hidden="true">×</span>
+            {SITE.gwcLogo ? <GwcMark size={36} /> : <span className="lockup__gwc">Girls Who Code</span>}
+          </span>
           <span className="nav__brand-text">
             <span className="nav__brand-small">Westside</span>
             <span className="nav__brand-big">Build Challenge</span>

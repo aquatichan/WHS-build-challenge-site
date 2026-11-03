@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 import { FAQ as ITEMS } from '../content.js';
 import { SectionHeader } from './SectionHeader.jsx';
 
-function Item({ q, a }) {
+function Item({ q, a, href, linkText }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   return (
@@ -30,7 +30,15 @@ function Item({ q, a }) {
         inert={!open}
       >
         <div className="faq__panel-inner">
-          <p>{a}</p>
+          <p>
+            {a}
+            {href && (
+              <>
+                {' '}
+                <a href={href}>{linkText}</a>
+              </>
+            )}
+          </p>
         </div>
       </div>
     </li>
@@ -41,7 +49,7 @@ export function FAQ() {
   return (
     <section id="faq" className="section" aria-labelledby="faq-title">
       <div className="container faq">
-        <SectionHeader index="09" eyebrow="FAQ" id="faq-title">
+        <SectionHeader index="05" eyebrow="FAQ" id="faq-title">
           Questions, <em>answered.</em>
         </SectionHeader>
         <ul className="faq__list">

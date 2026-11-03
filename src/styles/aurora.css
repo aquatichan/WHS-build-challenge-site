@@ -1,0 +1,482 @@
+/*
+ * Navy with a pastel aurora: Girls Who Code's palette as light and glow.
+ * Each section carries its own accent (--accent), used for its eyebrow,
+ * italic heading word, numbers and a soft glow behind it.
+ */
+
+/* ── Section accents ─────────────────────────────────────────────────────── */
+#top { --accent: var(--mint-text); }
+#prizes { --accent: var(--gold-3); --accent-rgb: 245, 224, 138; }
+#theme { --accent: var(--mint-text); --accent-rgb: 159, 235, 219; }
+#rules { --accent: var(--peach-glow); --accent-rgb: 251, 205, 176; }
+#judging { --accent: var(--sky-glow); --accent-rgb: 169, 220, 245; }
+#faq { --accent: var(--butter-glow); --accent-rgb: 252, 233, 168; }
+#ship { --accent: var(--mint-text); --accent-rgb: 159, 235, 219; }
+
+/* Soft colored light behind each section's header */
+.section {
+  isolation: isolate;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: min(1100px, 120vw);
+  height: 520px;
+  transform: translateX(-60%);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(var(--accent-rgb, 71, 178, 217), 0.22), transparent 70%);
+  pointer-events: none;
+}
+
+#theme.section::before {
+  display: none;
+}
+
+.plate__eyebrow,
+.theme-stage__kicker {
+  color: var(--accent, var(--sky));
+}
+
+.plate__rule {
+  background: var(--accent, var(--gold));
+}
+
+.hero__title em,
+.plate__title em,
+.plate__title .gold-text,
+.submit__title em,
+.ship__title em {
+  background: none;
+  color: var(--accent, var(--mint-text));
+  -webkit-text-fill-color: currentColor;
+  filter: drop-shadow(0 0 18px rgba(var(--accent-rgb, 159, 235, 219), 0.28));
+}
+
+.theme-title__accent {
+  background: none;
+  color: var(--mint-text);
+  -webkit-text-fill-color: currentColor;
+  filter:
+    brightness(calc(0.45 + var(--lit) * 0.55))
+    drop-shadow(0 0 calc(var(--lit) * 26px) rgba(159, 235, 219, calc(var(--lit) * 0.6)));
+}
+
+/* Rules: numbers pick up the section accent */
+#rules .engraved__num {
+  background: none;
+  color: var(--accent);
+  -webkit-text-fill-color: currentColor;
+}
+
+/* FAQ: open item gets an accent ring */
+#faq .faq__item.is-open {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(var(--accent-rgb), 0.55),
+    0 0 28px -8px rgba(var(--accent-rgb), 0.45),
+    0 10px 24px -8px rgba(0, 0, 0, 0.7);
+}
+
+/* ── One color per item: key dates, theme tracks, submission cards ───────── */
+.stat:nth-child(1), .track--0, .submit-card:nth-child(1) { --c: var(--mint-text); --c-rgb: 143, 232, 214; }
+.stat:nth-child(2), .track--1, .submit-card:nth-child(2) { --c: var(--peach-glow); --c-rgb: 251, 205, 176; }
+.stat:nth-child(3), .track--2, .submit-card:nth-child(3) { --c: var(--sky-glow); --c-rgb: 169, 220, 245; }
+.stat:nth-child(4), .submit-card:nth-child(4) { --c: var(--butter-glow); --c-rgb: 252, 233, 168; }
+
+.stat::before {
+  background: var(--c);
+}
+
+.stat__icon,
+.track__icon,
+.submit-card__icon {
+  color: var(--c);
+}
+
+.track.is-active {
+  box-shadow:
+    var(--bevel),
+    0 0 0 1.5px var(--c),
+    0 18px 40px rgba(0, 0, 0, 0.6),
+    0 0 50px -6px rgba(var(--c-rgb), 0.55);
+}
+
+.track.is-active .track__icon {
+  color: var(--c);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 0 18px rgba(var(--c-rgb), 0.55);
+}
+
+.track__hint {
+  color: var(--c);
+}
+
+.blueprint-wrap--0 { --c: var(--mint-text); }
+.blueprint-wrap--1 { --c: var(--peach-glow); }
+.blueprint-wrap--2 { --c: var(--sky-glow); }
+
+.blueprint-wrap::before {
+  border-color: var(--c);
+}
+
+.submit-card {
+  box-shadow: var(--bevel), var(--drop), inset 0 3px 0 var(--c);
+}
+
+/* ── Cards: hairline border and a pastel glow on hover / focus ───────────── */
+.prize-more__item,
+.track,
+.faq__item,
+.submit-card {
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  outline-offset: -1px;
+}
+
+.prize-card,
+.prize-more__item,
+.faq__item {
+  transition: filter 0.25s;
+}
+
+.prize-card:hover,
+.prize-more__item:hover,
+.faq__item:hover,
+.faq__item:focus-within {
+  filter: drop-shadow(0 0 16px rgba(var(--accent-rgb, 159, 235, 219), 0.22));
+}
+
+/* ── Announcement bar: dark strip with a pastel edge ─────────────────────── */
+.announce {
+  position: relative;
+  z-index: 51;
+  background:
+    radial-gradient(60% 200% at 15% 50%, rgba(159, 235, 219, 0.16), transparent 70%),
+    radial-gradient(60% 200% at 85% 50%, rgba(251, 205, 176, 0.14), transparent 70%),
+    #060a1c;
+  color: var(--text);
+}
+
+.announce::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--mint-glow), var(--butter-glow), var(--peach-glow), var(--sky-glow));
+}
+
+.announce__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 12px;
+  padding-block: 9px 11px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.announce__tag {
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-pastel);
+  background: linear-gradient(90deg, var(--mint-glow), var(--sky-glow));
+}
+
+.announce__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--mint-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.announce__link:hover {
+  color: #fff;
+}
+
+/* ── Header lockup: Coding Club × Girls Who Code ─────────────────────────── */
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.lockup__x {
+  color: var(--text-soft);
+  font-size: 1.1rem;
+}
+
+.lockup__gwc {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.05;
+  color: var(--mint-text);
+  white-space: nowrap;
+}
+
+@media (max-width: 599px) {
+  .nav__brand-text {
+    display: none;
+  }
+}
+
+.gwc-mark {
+  flex: none;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.gwc-mark--text {
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--on-pastel);
+  background: linear-gradient(135deg, var(--mint-glow), var(--butter-glow) 40%, var(--peach-glow) 70%, var(--sky-glow));
+}
+
+/* ── Hero aurora ─────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero__aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__aurora span {
+  position: absolute;
+  width: clamp(320px, 52vw, 760px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--c) 0%, transparent 62%);
+  opacity: var(--o);
+  filter: blur(40px);
+}
+
+.hero__aurora span:nth-child(1) { --c: var(--mint-glow); --o: 0.3; top: -18%; left: -14%; }
+.hero__aurora span:nth-child(2) { --c: var(--sky-glow); --o: 0.28; top: -10%; right: -16%; }
+.hero__aurora span:nth-child(3) { --c: var(--peach-glow); --o: 0.22; bottom: -30%; left: 22%; }
+.hero__aurora span:nth-child(4) { --c: var(--butter-glow); --o: 0.2; top: 30%; right: 6%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__aurora span {
+    animation: aurora-drift 34s ease-in-out infinite alternate;
+  }
+
+  .hero__aurora span:nth-child(2) { animation-duration: 41s; animation-direction: alternate-reverse; }
+  .hero__aurora span:nth-child(3) { animation-duration: 47s; }
+  .hero__aurora span:nth-child(4) { animation-duration: 38s; animation-direction: alternate-reverse; }
+}
+
+@keyframes aurora-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8%, 6%) scale(1.08); }
+  100% { transform: translate(-6%, 10%) scale(0.96); }
+}
+
+/* ── Closing call to action: submit ──────────────────────────────────────── */
+.ship {
+  padding-top: 0;
+}
+
+.ship__panel {
+  position: relative;
+  display: grid;
+  gap: 28px;
+  padding: clamp(32px, 5vw, 56px);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid transparent;
+  background:
+    radial-gradient(70% 120% at 0% 0%, rgba(159, 235, 219, 0.2), transparent 60%),
+    radial-gradient(60% 120% at 100% 100%, rgba(251, 205, 176, 0.18), transparent 60%),
+    radial-gradient(50% 90% at 70% 0%, rgba(169, 220, 245, 0.14), transparent 60%),
+    linear-gradient(160deg, #101d6e 0%, #0a1240 55%, #050920 100%) padding-box,
+    linear-gradient(120deg, var(--mint-glow), var(--butter-glow), var(--peach-glow), var(--sky-glow)) border-box;
+  box-shadow: 0 30px 70px -24px rgba(0, 0, 0, 0.9), 0 0 80px -30px rgba(159, 235, 219, 0.5);
+  overflow: hidden;
+}
+
+@media (min-width: 820px) {
+  .ship__panel {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}
+
+.ship__kicker {
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--butter-glow);
+}
+
+.ship__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.ship__title em {
+  font-weight: 500;
+}
+
+.ship__due {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.ship__due svg {
+  color: var(--peach-glow);
+}
+
+@media (max-width: 459px) {
+  .ship__btn {
+    width: 100%;
+  }
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.footer {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.footer__aurora {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--mint-glow), var(--butter-glow), var(--peach-glow), var(--sky-glow));
+  box-shadow: 0 0 40px 6px rgba(159, 235, 219, 0.25);
+}
+
+.footer__inner {
+  display: grid;
+  gap: 40px;
+  padding-top: 56px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 900px) {
+  .footer__inner {
+    grid-template-columns: 1.1fr 1.4fr 1fr;
+    gap: 48px;
+  }
+}
+
+.footer__brand {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.footer__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.footer__runby {
+  max-width: 34ch;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.footer__brand .lockup {
+  margin-bottom: 10px;
+}
+
+.footer__heading {
+  margin-bottom: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mint-text);
+}
+
+.follow {
+  display: grid;
+  gap: 10px;
+}
+
+.follow__card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: var(--text);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  outline-offset: -1px;
+  transition: background-color 0.2s, outline-color 0.2s;
+}
+
+.follow__card:hover {
+  background: rgba(159, 235, 219, 0.08);
+  outline-color: rgba(159, 235, 219, 0.5);
+}
+
+.follow__card--gwc:hover {
+  background: rgba(251, 205, 176, 0.08);
+  outline-color: rgba(251, 205, 176, 0.5);
+}
+
+.follow__text {
+  display: grid;
+  min-width: 0;
+}
+
+.follow__handle {
+  font-weight: 700;
+}
+
+.follow__club {
+  font-size: 0.8125rem;
+  color: var(--text-soft);
+}
+
+.follow__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  flex: none;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--mint-text);
+}
+
+.follow__card--gwc .follow__btn {
+  color: var(--peach-glow);
+}

@@ -19,6 +19,22 @@
   --gold-v: linear-gradient(180deg, var(--gold-3) 0%, var(--gold-2) 40%, var(--gold-4) 70%, var(--gold-1) 100%);
   --gold-solid: #d4af37;
 
+  /* ── Girls Who Code pastels ──────────────────── */
+  /* Light surfaces (dark text only) */
+  --mint: #dbf9f3;
+  --butter: #fef9e3;
+  --peach: #fdf3ea;
+  --sky-light: #e8f8fd;
+  /* Glows on the dark background, at low opacity */
+  --mint-glow: #9febdb;
+  --butter-glow: #fce9a8;
+  --peach-glow: #fbcdb0;
+  --sky-glow: #a9dcf5;
+  --gwc-teal: #0e8c7e; /* brand teal, light surfaces only */
+  --mint-text: #8fe8d6; /* teal-family text and accents on dark */
+  --pastel: linear-gradient(90deg, var(--mint) 0%, var(--butter) 34%, var(--peach) 67%, var(--sky-light) 100%);
+  --on-pastel: #0b1430;
+
   /* ── Text (all AA on the dark surfaces below) ──── */
   --text: #eef2fa;
   --text-muted: #c1cde0;

@@ -1,4 +1,3 @@
-import { PiSparkle } from 'react-icons/pi';
 import { PRIZES } from '../content.js';
 import { SectionHeader } from './SectionHeader.jsx';
 import { Reveal } from './bits/Reveal.jsx';
@@ -21,7 +20,7 @@ export function Prizes() {
       <div className="prizes__aura" aria-hidden="true" />
       <div className="container">
         <SectionHeader index="01" eyebrow="Prizes" id="prizes-title" align="center">
-          Real prizes. <em className="gold-text">A real shot at changing Westside.</em>
+          Real users. <em>A real shot at changing Westside.</em>
         </SectionHeader>
 
         <ol className="podium">
@@ -57,10 +56,6 @@ export function Prizes() {
             </Reveal>
           ))}
         </ul>
-
-        <p className="prizes__foot">
-          <PiSparkle aria-hidden="true" /> {PRIZES.footnote}
-        </p>
       </div>
     </section>
   );
